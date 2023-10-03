@@ -12,7 +12,7 @@ namespace DevNorrBot.Services
 {
     public class Gpt3Service
     {
-        private readonly string ApiKey = "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";
+        private readonly string ApiKey = string.Empty;
         private readonly HttpClient _httpClient;
         public Gpt3Service(string apiKey)
         {
@@ -62,10 +62,10 @@ namespace DevNorrBot.Services
 
         public async Task<List<string>> GenerateImageResponse(int numberOfPics, string message)
         {
-            var apiKey = ApiKey;
+
             var apiUrl = "https://api.openai.com/v1/images/generations";
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ApiKey);
 
             var payload = new ImagePrompt
             {

@@ -34,13 +34,15 @@ namespace DevNorrBot.Commands
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 await ctx.RespondAsync("Sorry, there was an error processing your request.");
+                cancellationToken.Cancel();
             }
         }
 
         [Command("gptimage")]
         public async Task GptImage(CommandContext ctx, [RemainingText] string query)
         {
-            var gptService = new Gpt3Service(Constants.Gpt3Token);
+            var token = Constants.Gpt3Token;
+            var gptService = new Gpt3Service(token);
             CancellationTokenSource cancellationToken = new CancellationTokenSource();
             
             try
@@ -65,6 +67,7 @@ namespace DevNorrBot.Commands
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 await ctx.RespondAsync("Sorry, there was an error processing your request.");
+                cancellationToken.Cancel();
             }
         }
 

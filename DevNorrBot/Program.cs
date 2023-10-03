@@ -17,15 +17,7 @@ class Program
         DependencyInjection dependencyInjection = new DependencyInjection();
         dependencyInjection.AddDependencies();
 
-
-
-
         var config = dependencyInjection.GetService<IConfiguration>();
-
-        Console.WriteLine(Constants.DiscordToken);
-        Console.WriteLine(Constants.Gpt3Token);
-
-
         var discord = new DiscordClient(new DiscordConfiguration()
         {
             Token = Constants.DiscordToken,
@@ -37,7 +29,6 @@ class Program
         {
             StringPrefixes = new string[] { "!" }
         });
-
 
         commands.RegisterCommands<CommandModule>();
         commands.RegisterCommands<GptCommands>();
